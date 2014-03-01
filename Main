@@ -1,0 +1,32 @@
+import org.jsfml.graphics.CircleShape;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.Keyboard;
+import org.jsfml.window.Mouse;
+import org.jsfml.window.VideoMode;
+import org.jsfml.window.event.Event;
+import org.jsfml.system.Vector2f;
+
+
+
+public class Main {
+
+	
+	public static void main(String args[])
+	{
+		GameEngine game = new GameEngine();
+		game.Init();
+		
+		boolean Running = true;
+		
+		while(game.Window.isOpen())
+		{
+			game.Update();
+			game.HandleEvents();
+			game.Render();
+		}
+		
+	}
+
+}
