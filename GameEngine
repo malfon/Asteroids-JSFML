@@ -1,0 +1,74 @@
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.Keyboard;
+import org.jsfml.window.VideoMode;
+import org.jsfml.window.Keyboard.Key;
+import org.jsfml.window.event.Event;
+
+
+public class GameEngine {
+	
+	int Width = 800; int Height = 600;
+	public RenderWindow Window = new RenderWindow();
+	
+	Background bg = new Background(Width, Height);
+	Ship ship = new Ship();
+	
+	
+	public void Init()
+	{
+	    Window.create(new VideoMode(Width, Height), "Asteroid");	
+		Window.setFramerateLimit(30);
+	
+		// Initialize Background
+	     bg.Init();
+		
+	     
+	     // Initialize Ship
+	     ship.Init();
+	     
+	}
+	
+	
+	public void Update()
+	{
+		Window.clear();
+		
+		ship.Update();
+		
+	}
+	
+
+	public void HandleEvents()
+	{
+		for(Event event : Window.pollEvents())
+		{
+			switch(event.type)
+			{
+			case CLOSED:
+				Window.close();
+				break;
+				
+			case KEY_PRESSED:
+				if(Keyboard.isKeyPressed(Key.ESCAPE))
+					Window.close();
+				break;
+			
+			}
+			
+		}
+	}
+	
+	
+	
+	public void Render()
+	{
+		// Draw Background
+		bg.Render(Window);
+		
+		// Draw Ship
+		ship.Render(Window);
+		
+		Window.display();
+	}
+
+}
